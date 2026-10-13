@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nusindo Wisata - Paket Terbaik</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {margin: 0; padding: 0; box-sizing: border-box;}
+    body {font-family: 'Poppins', sans-serif; background: #f4f7fa; color: #333; line-height: 1.6;}
+    header {background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%); color: #fff; padding: 1rem 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.1);}
+    .container {max-width: 1200px; margin: 0 auto; padding: 0 20px;}
+    nav {display: flex; justify-content: space-between; align-items: center;}
+    .logo {display: flex; align-items: center; gap: 10px; font-size: 1.8rem; font-weight: 700;}
+    .logo img {height: 60px;}
+    .nav-links {list-style: none; display: flex; gap: 1.5rem;}
+    .nav-links a {color: #fff; text-decoration: none; font-weight: 500; transition: 0.3s;}
+    .nav-links a:hover {text-decoration: underline;}
+
+    .hero {
+      position: relative;
+      height: 90vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      z-index: 0;
+    }
+    .hero-slide.active {
+      opacity: 1;
+    }
+    .hero-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      color: white;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
+      background-color: rgba(0,0,0,0.4);
+      padding: 2rem;
+      border-radius: 10px;
+    }
+    .hero-content h1 {font-size: 3rem; margin-bottom: 1rem;}
+    .hero-content p {font-size: 1.2rem; margin-bottom: 2rem;}
+    .btn {padding: 0.75rem 1.5rem; background: #ff6b6b; color: white; border: none; border-radius: 30px; text-decoration: none; font-weight: 600; transition: all 0.3s; display: inline-block; margin: 5px;}
+    .btn:hover {background: #e85c5c; transform: scale(1.05);}
+
+    .section {padding: 80px 20px; background: white;}
+    .section-title {text-align: center; font-size: 2.5rem; margin-bottom: 3rem;}
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+    .card:hover {transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.15);}
+    .card img {width: 100%; height: 200px; object-fit: cover;}
+    .card-body {padding: 1.5rem; text-align: center;}
+    .card-title {font-size: 1.4rem; margin-bottom: 0.5rem; color: #333;}
+    .card-desc {font-size: 0.95rem; color: #666; margin-bottom: 1rem;}
+    .card-price {font-size: 1.2rem; font-weight: bold; color: #2575fc; margin-bottom: 1rem;}
+
+    footer {text-align: center; padding: 2rem 0; background: #333; color: white;}
+
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      color: white;
+      border-radius: 30px;
+      padding: 10px 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      z-index: 999;
+      transition: transform 0.3s ease;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.05);
+    }
+    .whatsapp-float img {
+      width: 24px;
+      height: 24px;
+    }
+
+    @media(max-width: 768px) {
+      .hero-content h1 {font-size: 2.2rem;}
+      .hero-content p {font-size: 1rem;}
+    }
+  .wa-icon .wa-svg{width:21px;height:21px;vertical-align:middle}.btn-whatsapp{display:inline-flex;align-items:center;justify-content:center;gap:7px}
+</style>
+<style>
+    .wa-icon .wa-svg{width:21px;height:21px;display:inline-block;vertical-align:middle}
+    .btn-whatsapp:before{content:none!important;display:none!important}
+    .btn-whatsapp.booking-cta:after{content:' →';font-weight:900}
+    .btn-whatsapp{display:inline-flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}
+    .btn-back{display:inline-flex;align-items:center;justify-content:center}
+    </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">
+          <img src="../gambar/logofix.svg" alt="Logo Nusindo">
+          Nusindo Wisata
+        </div>
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#paket">Paket</a></li>
+          <li><a href="#kontak">Kontak</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="home">
+    <img class="hero-slide active" src="../gambar/bromo.jpg" alt="Bromo">
+    <img class="hero-slide" src="../gambar/bali.jpg" alt="Bali">
+    <img class="hero-slide" src="../gambar/borobudur.jpg" alt="Borobudur">
+
+    <div class="hero-content">
+      <h1>Temukan Liburan Impianmu</h1>
+      <p>Pilih dari berbagai destinasi terbaik di Indonesia bersama Nusindo Wisata</p>
+      <a href="#paket" class="btn">Lihat Paket</a>
+    </div>
+  </section>
+
+  <section class="section" id="tentang">
+    <div class="container">
+      <h2 class="section-title">Tentang Kami</h2>
+      <p style="text-align: center; max-width: 800px; margin: 0 auto; font-size: 1.1rem;">
+        Nusindo Wisata adalah biro perjalanan terpercaya yang berkomitmen untuk memberikan pengalaman liburan terbaik kepada pelanggan. Kami menyediakan berbagai paket wisata menarik ke berbagai destinasi unggulan di Indonesia dengan pelayanan profesional dan harga yang bersaing. Dengan tim yang berpengalaman dan ramah, kami siap membantu Anda mewujudkan liburan impian.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="paket">
+    <h2 class="section-title">Paket Wisata</h2>
+    <div class="container">
+      <div class="cards">
+        <div class="card">
+          <img src="../gambar/bali.jpg" alt="Bali">
+          <div class="card-body">
+            <h3 class="card-title">Paket Bali 5D4N</h3>
+            <p class="card-desc">Nikmati keindahan Pantai Kuta, Tanah Lot, dan Ubud bersama pemandu lokal.</p>
+            <div class="card-price">Rp 1.750.000,-/Pax</div>
+            <a class="btn" href="rincianpaketbali.html">Rincian Paket</a>
+            <a class="btn" href="https://wa.me/qr/4TR3EXSEP46DA1">Pesan Sekarang</a>
+          </div>
+        </div>
+        <div class="card">
+          <img src="../gambar/bromo.jpg" alt="Bromo">
+          <div class="card-body">
+            <h3 class="card-title">Paket Bromo-Malang 4D3N</h3>
+            <p class="card-desc">Jelajahi sunrise Bromo dan keindahan alam Madakaripura dalam pengalaman berkesan.</p>
+            <div class="card-price">Rp 1.607.000,-/Pax</div>
+            <a class="btn" href="rincianpaketbromo.html">Rincian Paket</a>
+            <a class="btn" href="https://wa.me/qr/4TR3EXSEP46DA1">Pesan Sekarang</a>
+          </div>
+        </div>
+         <div class="card">
+          <img src="../gambar/malangbatu.jpg.png" alt="Malang">
+          <div class="card-body">
+            <h3 class="card-title">Paket Malang 4D3N</h3>
+            <p class="card-desc">Jelajahi wisata malang dan keindahan alam dalam pengalaman berkesan.</p>
+            <div class="card-price">Rp 1.607.000,-/Pax</div>
+            <a class="btn" href="rincianpaketmalang.html">Rincian Paket</a>
+            <a class="btn" href="https://wa.me/qr/4TR3EXSEP46DA1">Pesan Sekarang</a>
+          </div>
+        </div>
+        <div class="card">
+          <img src="../gambar/lombok.jpg" alt="Lombok">
+          <div class="card-body">
+            <h3 class="card-title">Lombok 5D4N</h3>
+            <p class="card-desc">Eksplorasi keindahan alam Lombok dan boat tour.</p>
+            <div class="card-price">Rp 2.000.000,-/Pax</div>
+            <a class="btn" href="rincianpaketlombok.html">Rincian Paket</a>
+            <a class="btn" href="https://wa.me/qr/4TR3EXSEP46DA1">Pesan Sekarang</a>
+          </div>
+        </div>
+        <div class="card">
+          <img src="../gambar/monas.jpg" alt="Jakarta">
+          <div class="card-body">
+            <h3 class="card-title">Jakarta 4D2N</h3>
+            <p class="card-desc">Eksplorasi keindahan Jakarta dan boat tour.</p>
+            <div class="card-price">Rp 2.071.000,-/Pax</div>
+            <a class="btn" href="rincianpaketjakarta.html">Rincian Paket</a>
+            <a class="btn" href="https://wa.me/qr/4TR3EXSEP46DA1">Pesan Sekarang</a>
+          </div>
+        </div>
+         <div class="card">
+          <img src="../gambar/bandung.jpg" alt="Bandung">
+          <div class="card-body">
+            <h3 class="card-title">Paket Badung 4D3N</h3>
+            <p class="card-desc">Jelajahi wisata Bandung dan keindahan alam dalam pengalaman berkesan.</p>
+            <div class="card-price">Rp 1.668.333,-/Pax</div>
+            <a class="btn" href="rincianpaketbandung.html">Rincian Paket</a>
+            <a class="btn" href="https://wa.me/qr/4TR3EXSEP46DA1">Pesan Sekarang</a>
+          </div>
+        </div>
+        <div class="card">
+          <img src="../gambar/tugu.jpg" alt="Jogja">
+          <div class="card-body">
+            <h3 class="card-title">City Tour Jogja 2D1N</h3>
+            <p class="card-desc">Jelajahi wisata Yogyakarta dalam pengalaman berkesan.</p>
+            <div class="card-price">Mulai dari Rp.1Jt an</div>
+            <a class="btn" href="citytourjogja2d1n.html">Rincian Paket</a>
+            <a class="btn" href="https://wa.me/qr/4TR3EXSEP46DA1">Pesan Sekarang</a>
+          </div>
+        </div>
+          <div class="card">
+          <img src="../gambar/malioboro.jpg" alt="Jogja">
+          <div class="card-body">
+            <h3 class="card-title">City Tour Jogja 3D2N</h3>
+            <p class="card-desc">Jelajahi wisata Yogyakarta dalam pengalaman berkesan.</p>
+            <div class="card-price">Paket Mulai dari Rp 1.220.00,-/Pax</div>
+            <a class="btn" href="citytourjogja3d2n.html">Rincian Paket</a>
+            <a class="btn" href="https://wa.me/qr/4TR3EXSEP46DA1">Pesan Sekarang</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="kontak">
+    <p>&copy; 2025 Nusindo Wisata | Email: info@nusindo.com | Telp: 0812-3456-7890</p>
+  </footer>
+
+  <a href="https://wa.me/qr/4TR3EXSEP46DA1?text=Halo%2C%20saya%20ingin%20bertanya%20tentang%20paket%20wisata%20di%20Nusindo" class="whatsapp-float" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    Informasi & Reservasi
+  </a>
+
+  <script>
+    const slides = document.querySelectorAll('.hero-slide');
+    let current = 0;
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
+    }
+
+    function nextSlide() {
+      current = (current + 1) % slides.length;
+      showSlide(current);
+    }
+
+    showSlide(current);
+    setInterval(nextSlide, 5000);
+  </script>
+</body>
+</html>
